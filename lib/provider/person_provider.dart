@@ -6,14 +6,17 @@ import 'package:uuid/uuid.dart';
 class PersonProvider extends ChangeNotifier {
   PersonServies _servies = PersonServies();
   List<Person> _person = [];
-  List<Person> get person => _person;
+  List<Person> get person => _person; 
+  PersonProvider(){ 
+    fetchPerson();
+  }
 
   Future<void> fetchPerson() async {
     _person = await _servies.fetchPerson();
     notifyListeners();
   }
 
-  Future<void> addPerson(String name, int age, String profession) async {
+  Future<bool> addPerson(String name, int age, String profession) async {
     final person = Person(
       id: Uuid().v4(),
       name: name,
@@ -21,6 +24,7 @@ class PersonProvider extends ChangeNotifier {
       profession: profession,
     );
     await _servies.add_person(person);
-    notifyListeners();
+    notifyListeners(); 
+    return true;
   }
 }

@@ -1,12 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:learning_firebase/provider/person_provider.dart';
+import 'package:learning_firebase/screens/person_display_screen.dart';
+import 'package:provider/provider.dart';
 
-class AddPersonScreen extends StatelessWidget {
+class AddPersonScreen extends StatefulWidget {
   const AddPersonScreen({super.key});
 
   @override
+  State<AddPersonScreen> createState() => _AddPersonScreenState();
+}
+
+class _AddPersonScreenState extends State<AddPersonScreen> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
+  TextEditingController _professionController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PersonProvider>(context);
     return Scaffold(
       appBar: AppBar(toolbarHeight: 1),
       body: SingleChildScrollView(
@@ -27,7 +39,7 @@ class AddPersonScreen extends StatelessWidget {
                   Text(
                     "Forum Fillup",
                     style: TextStyle(
-                      color:Colors.grey,
+                      color: Colors.grey,
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
@@ -41,19 +53,20 @@ class AddPersonScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: _nameController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             contentPadding: EdgeInsets.only(top: 12, left: 20),
@@ -61,7 +74,7 @@ class AddPersonScreen extends StatelessWidget {
                             fillColor: Colors.white24,
                             border: InputBorder.none,
 
-                            hintText: "Enter your first Name",
+                            hintText: "Enter your full Name",
                           ),
                         ),
                       ),
@@ -72,19 +85,20 @@ class AddPersonScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: _ageController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             contentPadding: EdgeInsets.only(top: 12, left: 20),
@@ -92,30 +106,31 @@ class AddPersonScreen extends StatelessWidget {
                             fillColor: Colors.white24,
                             border: InputBorder.none,
 
-                            hintText: "Enter your Middle Name Optional",
+                            hintText: "Enter your age",
                           ),
                         ),
                       ),
                     ],
-                  ),
-                  SizedBox(height: 20),
+                  ), 
+                  SizedBox(height: 20,),
                   Row(
                     children: [
                       Expanded(
                         child: TextFormField(
+                          controller: _professionController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide(
                                 width: 0,
-                                color:Colors.grey,
+                                color: Colors.grey,
                               ),
                             ),
                             contentPadding: EdgeInsets.only(top: 12, left: 20),
@@ -123,74 +138,13 @@ class AddPersonScreen extends StatelessWidget {
                             fillColor: Colors.white24,
                             border: InputBorder.none,
 
-                            hintText: "Enter your Last Name",
+                            hintText: "Enter your Profession",
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                width: 0,
-                                color:Colors.grey,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                width: 0,
-                                color:Colors.grey,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.only(top: 12, left: 20),
-                            filled: true,
-                            fillColor: Colors.white24,
-                            border: InputBorder.none,
 
-                            hintText: "Enter your Nationality",
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              borderSide: BorderSide(
-                                width: 0,
-                                color:Colors.grey,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                width: 0,
-                                color:Colors.grey,
-                              ),
-                            ),
-                            contentPadding: EdgeInsets.only(top: 12, left: 20),
-                            filled: true,
-                            fillColor: Colors.white24,
-                            border: InputBorder.none,
-
-                            hintText: "Enter your Age",
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
                   SizedBox(height: 30),
                   Container(
                     height: 50,
@@ -199,17 +153,60 @@ class AddPersonScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.grey[500],
                     ),
-                    child: Center(
-                      child: Text(
-                        "Submit",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                    child: InkWell(
+                      onTap: () async {
+                        final name = _nameController.text;
+                        final age = int.tryParse(_ageController.text) ?? 0;
+                        final profession = _professionController.text;
+                        if (name.isEmpty || age == 0 || profession.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Please fill all content"),
+                              backgroundColor: Colors.red,
+                            ),
+                          );
+                        } else {
+                          final sucess = await provider.addPerson(
+                            name,
+                            age,
+                            profession,
+                          ); 
+                          if(sucess){ 
+                            ScaffoldMessenger.of(context).showSnackBar( 
+                              SnackBar(content: Text("Person data added succesfully", ),  
+                              backgroundColor: Colors.green,
+                              )
+                            );
+                          } 
+                          else{ 
+                             ScaffoldMessenger.of(context).showSnackBar( 
+                              SnackBar(content: Text("Failed to add succesfully", ),  
+                              backgroundColor: Colors.red,
+                              )
+                            );
+                          }
+                         
+                        } 
+                        _ageController.clear(); 
+                        _nameController.clear();
+                        _professionController.clear();
+                      },
+                      child: Center(
+                        child: Text(
+                          "Submit",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
+                      ),  
+                      
+                    
                     ),
-                  ),
+                  ), 
+                  ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (_)=>UserprofileScreen())); 
+                }, child: Text("hello"))
                 ],
               ),
             ),
