@@ -9,13 +9,11 @@ class Person {
     required this.name,
     required this.age,
     required this.profession,
-  });
-
+  }); 
   // Convert a Person object to JSON (Map)
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {   
     return {'id': id, 'name': name, 'age': age, 'profession': profession};
-  }
-
+  }   
   // Create a Person object from JSON (Map)
   factory Person.fromJson(Map<String, dynamic> json) {
     return Person(

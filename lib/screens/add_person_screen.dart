@@ -1,4 +1,4 @@
-import 'dart:async';
+import 'dart:async'; 
 
 import 'package:flutter/material.dart';
 import 'package:learning_firebase/provider/person_provider.dart';
@@ -105,14 +105,13 @@ class _AddPersonScreenState extends State<AddPersonScreen> {
                             filled: true,
                             fillColor: Colors.white24,
                             border: InputBorder.none,
-
                             hintText: "Enter your age",
                           ),
                         ),
                       ),
                     ],
-                  ), 
-                  SizedBox(height: 20,),
+                  ),
+                  SizedBox(height: 20),
                   Row(
                     children: [
                       Expanded(
@@ -170,24 +169,24 @@ class _AddPersonScreenState extends State<AddPersonScreen> {
                             name,
                             age,
                             profession,
-                          ); 
-                          if(sucess){ 
-                            ScaffoldMessenger.of(context).showSnackBar( 
-                              SnackBar(content: Text("Person data added succesfully", ),  
-                              backgroundColor: Colors.green,
-                              )
+                          );
+                          if (sucess) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Person data added succesfully"),
+                                backgroundColor: Colors.green,
+                              ),
                             );
-                          } 
-                          else{ 
-                             ScaffoldMessenger.of(context).showSnackBar( 
-                              SnackBar(content: Text("Failed to add succesfully", ),  
-                              backgroundColor: Colors.red,
-                              )
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Failed to add succesfully"),
+                                backgroundColor: Colors.red,
+                              ),
                             );
                           }
-                         
-                        } 
-                        _ageController.clear(); 
+                        }
+                        _ageController.clear();
                         _nameController.clear();
                         _professionController.clear();
                       },
@@ -200,13 +199,18 @@ class _AddPersonScreenState extends State<AddPersonScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),  
-                      
-                    
+                      ),
                     ),
-                  ), 
-                  ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (_)=>UserprofileScreen())); 
-                }, child: Text("hello"))
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => UserprofileScreen()),
+                      );
+                    },
+                    child: Text("hello"),
+                  ),
                 ],
               ),
             ),
